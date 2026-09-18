@@ -8,6 +8,8 @@ const int ENB = 10;  // PWM - vitesse moteur B
 const int IN3 = 5;
 const int IN4 = 6;
 
+int vitesse = 200;
+
 void setup() {
   pinMode(ENA, OUTPUT);
   pinMode(ENB, OUTPUT);
@@ -25,17 +27,17 @@ void loop() {
     char c = Serial1.read();
 
     switch (c) {
-      case 'F': avancer(vitesse); break;        // Forward
-      case 'B': reculer(vitesse); break;        // Backward
-      case 'L': tournerGauche(vitesse); break;  // Left
-      case 'R': tournerDroite(vitesse); break;  // Right
-      case 'G': avantGauche(vitesse); break;    // Forward-Left (diagonale)
-      case 'I': avantDroite(vitesse); break;    // Forward-Right
-      case 'H': arriereGauche(vitesse); break;  // Backward-Left
-      case 'J': arriereDroite(vitesse); break;  // Backward-Right
-      case 'S': arreter(); break;               // Stop
+      case 'F': break;
+      case 'B': break;
+      case 'L': break;
+      case 'R': break;
+      case 'G': break;
+      case 'I': break;
+      case 'J': break;
+      case 'S':break;
     }
   }
+}
 }
 
 void avancer(int v) {

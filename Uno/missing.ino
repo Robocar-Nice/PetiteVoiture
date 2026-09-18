@@ -1,3 +1,7 @@
+#include <SoftwareSerial.h>
+
+SoftwareSerial BT(11, 12);
+
 // Moteur A
 const int ENA = 9;   // PWM - vitesse moteur A
 const int IN1 = 3;
@@ -8,6 +12,8 @@ const int ENB = 10;  // PWM - vitesse moteur B
 const int IN3 = 5;
 const int IN4 = 6;
 
+int vitesse = 200;
+
 void setup() {
   pinMode(ENA, OUTPUT);
   pinMode(ENB, OUTPUT);
@@ -17,12 +23,12 @@ void setup() {
   pinMode(IN4, OUTPUT);
 
   Serial.begin(9600);
-  Serial1.begin(9600);
+  BT.begin(9600);
 }
 
 void loop() {
-  if (Serial1.available()) {
-    char c = Serial1.read();
+  if (BT.available()) {
+    char c = BT.read();
 
     switch (c) {
       case 'F': break;
