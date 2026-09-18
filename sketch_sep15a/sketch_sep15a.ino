@@ -21,56 +21,93 @@ void setup() {
 
 void loop() {
   if (Serial.available()) {
-    char val = Serial.read();
+    char c = Serial.read();
 
-    Serial.print(val);
-
-    // if (val == *code*) {
-      //do something
-    //}
+    switch (c) {
+      case 'F': break;
+      case 'B': break;
+      case 'L': break;
+      case 'R': break;
+      case 'G': break;
+      case 'I': break;
+      case 'J': break;
+      case 'S':break;
+    }
   }
 }
-
-void avancer(int vitesse) {
-  // Moteur A avant
-  digitalWrite(IN1, HIGH);
-  digitalWrite(IN2, LOW);
-  // Moteur B avant
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
-
-  analogWrite(ENA, vitesse);
-  analogWrite(ENB, vitesse);
 }
 
-void reculer(int vitesse) {
+void avancer(int v) {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENA, v);
+  analogWrite(ENB, v);
+}
+
+void reculer(int v) {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, HIGH);
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, HIGH);
-
-  analogWrite(ENA, vitesse);
-  analogWrite(ENB, vitesse);
+  analogWrite(ENA, v);
+  analogWrite(ENB, v);
 }
 
-void tournerDroite(int vitesse) {
+void tournerDroite(int v) {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, HIGH);
   digitalWrite(IN3, HIGH);
   digitalWrite(IN4, LOW);
-
-  analogWrite(ENA, vitesse);
-  analogWrite(ENB, vitesse);
+  analogWrite(ENA, v);
+  analogWrite(ENB, v);
 }
 
-void tournerGauche(int vitesse) {
+void tournerGauche(int v) {
   digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, HIGH);
+  analogWrite(ENA, v);
+  analogWrite(ENB, v);
+}
 
-  analogWrite(ENA, vitesse);
-  analogWrite(ENB, vitesse);
+void avantGauche(int v) {
+  // moteur A ralenti, moteur B plein régime -> léger virage en avançant
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENA, v / 2);
+  analogWrite(ENB, v);
+}
+
+void avantDroite(int v) {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENA, v);
+  analogWrite(ENB, v / 2);
+}
+
+void arriereGauche(int v) {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+  analogWrite(ENA, v / 2);
+  analogWrite(ENB, v);
+}
+
+void arriereDroite(int v) {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+  analogWrite(ENA, v);
+  analogWrite(ENB, v / 2);
 }
 
 void arreter() {
@@ -78,7 +115,6 @@ void arreter() {
   digitalWrite(IN2, LOW);
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, LOW);
-
   analogWrite(ENA, 0);
   analogWrite(ENB, 0);
 }
