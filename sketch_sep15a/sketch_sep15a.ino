@@ -17,11 +17,12 @@ void setup() {
   pinMode(IN4, OUTPUT);
 
   Serial.begin(9600);
+  Serial1.begin(9600);
 }
 
 void loop() {
-  if (Serial.available()) {
-    char c = Serial.read();
+  if (Serial1.available()) {
+    char c = Serial1.read();
 
     switch (c) {
       case 'F': break;
